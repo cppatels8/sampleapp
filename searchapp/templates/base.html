@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Search</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/jquery.dataTables.css">
+    <link href="/static/css/app.css" rel="stylesheet">
+  </head>
+  <body>
+	<header>
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">SampleApp</a>
+		    </div>
+		
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <div class="create-task-btn">
+			  	<button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#addMpData">
+				  + Add MP Data
+				</button>
+			  </div>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+      
+    </header>
+    <div class="container">
+    	<div class="well">
+    		<form class="form-inline filter-results">
+			  	<div class="form-group">
+			    	<label>Name</label>
+			    	<input type="text" name="member_name" class="form-control" placeholder="Member Name">
+			  	</div>
+			  	<div class="form-group">
+			    	<label>state</label>
+			    	<input type="text" name="state" class="form-control" placeholder="State">
+			  	</div>
+			  	<div class="form-group">
+			    	<label>Constituency</label>
+			    	<input type="text" name="constituency" class="form-control" placeholder="Constituency">
+			  	</div>
+			  	<div class="form-group">
+			    	<label>Lok Sabha</label>
+			    	<input type="number" name="lok_sabha" class="form-control" placeholder="Lok Sabha">
+			  	</div>
+			  	<button type="submit" class="btn btn-primary submit-form">Search</button>
+			</form>
+			
+			<div class="filter-params">
+				{% if params_dict %}
+				Showing Results for : {{params_dict}}
+				{% endif %}
+			</div>
+    	</div>
+    	<table class="table mp-data-table">	
+    		<thead>
+    			<th>S. No</th>
+    			<th>Division/Seat No.</th>
+    			<th>Name of Member</th>
+    			<th>Lok Sabha</th>
+    			<th>Session</th>
+    			<th>State</th>
+    			<th>Constituency</th>
+    			<th>Total Seats</th>
+    			<th>Actions</th>
+    		</thead>
+    		<tbody>
+    			{% for data in mp_data %}
+	    			<tr>
+		    			<td>{{forloop.counter}}</td>
+		    			<td>{{data.division_or_seat_num}}</td>
+		    			<td>{{data.member_name}}</td>
+		    			<td>{{data.lok_sabha}}</td>
+		    			<td>{{data.session}}</td>
+		    			<td>{{data.state}}</td>
+		    			<td>{{data.constituency}}</td>
+		    			<td>{{data.total_seats}}</td>
+		    			<td>
+		    				<i class="glyphicon glyphicon-pencil edit-mp-data"></i>|
+		    				<i data-id="{{data.id}}" class="glyphicon glyphicon-remove delete-mp-data"></i>
+		    			</td>
+		    		</tr>
+	    		{% endfor %}
+    		</tbody>
+    	</table>
+    </div>
+    
+    
+	<!-- Modal for adding data -->
+	{% include "create_mp_data_model.html" %}
+	
+	<!-- Modal for confirmation dialog -->
+	{% include "confirmation_dialog.html" %}
+    
+    
+    <script src="/static/js/jquery.js"></script> 
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="/static/js/jquery.dataTables.js"></script>
+    <script src="/static/js/app.js"></script>
+    
+  </body>
+</html>

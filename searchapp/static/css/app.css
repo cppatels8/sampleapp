@@ -1,0 +1,22 @@
+.edit-mp-data, .delete-mp-data {
+	cursor: pointer; 
+}
+
+.delete-mp-data {
+	color: rgb(163, 74, 74);
+}
+
+.edit-mp-data {
+	margin-right: 5px;
+	color: rgb(62, 68, 123);
+}
+
+.create-task-btn {
+	float: right;
+	margin-top: 1%;
+}
+
+.filter-params {
+	text-align: center;
+	margin-top: 6px;
+}
