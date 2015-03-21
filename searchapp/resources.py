@@ -16,5 +16,10 @@ class MPattendenceResource(ModelResource):
         filtering = {
                      "member_name": ALL,
                      "id": ALL,
-                     "lok_sabha": ALL
+                     "state": ALL,
+                     "division_or_seat_num": ALL,
+                     "constituency": ALL,
+                     "lok_sabha": ALL,
+                     "session": ALL,
+                     "total_seats": ALL
                 }
