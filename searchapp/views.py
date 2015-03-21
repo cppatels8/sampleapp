@@ -5,6 +5,7 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse
 from models import MPattendence
+from sampleapp import settings
 
 # Create your views here.
 def home(request):
@@ -24,7 +25,7 @@ def get_url_params_dict(params):
     return params_dict
 
 def load_csv_data(request):
-    filepath = "/home/hasher/workspace/workspace1/WebApp/sampleapp/searchapp/datafile.csv"
+    filepath = settings.BASE_DIR + "/searchapp/datafile.csv"
     csv_data = read_csv_data(filepath)
     for data in csv_data:
         if csv_data.index(data)!=0:
